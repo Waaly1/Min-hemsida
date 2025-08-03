@@ -944,9 +944,11 @@ Här får varje familj möjlighet att leva i en miljö som inspirerar till både
 
       <!-- mailto => atlasaktiebolag@gmail.com -->
       <form class="contact-form"
-            method="POST"
-            action="mailto:atlasaktiebolag@gmail.com"
-            enctype="text/plain">
+      method="POST"
+      action="https://formsubmit.co/atlasaktiebolag@gmail.com"
+      enctype="multipart/form-data">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="https://sentrea.se/tack.html">
         <div>
           <label for="namn">Namn</label>
           <input type="text" id="namn" name="namn" placeholder="Ditt namn" required>
@@ -1158,3 +1160,4 @@ Här får varje familj möjlighet att leva i en miljö som inspirerar till både
   </script>
 </body>
 </html>
+
