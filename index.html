@@ -363,7 +363,7 @@
   justify-content: center;  /* centrerar rutnätet när det blir "färre" kort på raden */
   
   /* Konstant kortbredd + max 4 per rad automatiskt */
-  grid-template-columns: repeat(auto-fit, minmax(480px, 480px));
+  grid-template-columns: repeat(auto-fit, minmax(380px, 380px));
 }
 
     .projects-title {
@@ -378,15 +378,15 @@
 .projects-title::after {
   content: "";
   display: block;
-  width: 560px;
+  width: 420px;
   height: 4px;
   background: #333;
   margin: 10px auto 0;
 }
 
     .project-card {
-  width: 480px;      /* matchar grid-template */
-  height: 500px;     /* eller vad du vill ha */
+  width: 380px;      /* matchar grid-template */
+  height: 400px;     /* eller vad du vill ha */
   position: relative;
   overflow: hidden;
   filter: brightness(0.6);
@@ -582,7 +582,7 @@
     }
     .analysis-dots {
       position: absolute;
-      bottom: 50px;
+      bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 3;
@@ -623,7 +623,7 @@
   justify-content: center;  /* centrerar rutnätet när det blir "färre" kort på raden */
   
   /* Konstant kortbredd + max 4 per rad automatiskt */
-  grid-template-columns: repeat(auto-fit, minmax(480px, 480px));
+  grid-template-columns: repeat(auto-fit, minmax(380px, 380px));
 }
 
     .hus-title {
@@ -638,15 +638,15 @@
 .hus-title::after {
   content: "";
   display: block;
-  width: 490px;
+  width: 420px;
   height: 4px;
   background: #333;
   margin: 10px auto 0;
 }
 
     .hus-card {
-  width: 480px;      /* matchar grid-template */
-  height: 500px;     /* eller vad du vill ha */
+  width: 380px;      /* matchar grid-template */
+  height: 400px;     /* eller vad du vill ha */
   position: relative;
   overflow: hidden;
   filter: brightness(0.6);
@@ -851,7 +851,7 @@
         height: 60px;
       }
       .analysis-dots {
-        bottom: 100px;
+        bottom: 50px;
       }
       .down-chevron, .down-chevron2, .down-chevron3,
       .up-chevron2, .up-chevron3, .up-chevron4,
@@ -1166,7 +1166,7 @@ Här får varje familj möjlighet att leva i en miljö som inspirerar till både
     <button id="analysisPrev2" class="arrow-btn">&#10094;</button>
     <button id="analysisNext2" class="arrow-btn">&#10095;</button>
 
-    <div class="analysis-dots" id="analysisDots2"></div>
+    <div class="analysis-" id="analysis2"></div>
   </div>
 </section>
 
@@ -1441,6 +1441,7 @@ showAnalysisSlide2(0);
   </script>
 </body>
 </html>
+
 
 
 
