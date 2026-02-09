@@ -623,7 +623,7 @@
   justify-content: center;  /* centrerar rutnätet när det blir "färre" kort på raden */
   
   /* Konstant kortbredd + max 4 per rad automatiskt */
-  grid-template-columns: repeat(auto-fit, minmax(380px, 380px));
+  grid-template-columns: repeat(auto-fit, minmax(340px, 340px));
 }
 
     .hus-title {
@@ -638,15 +638,15 @@
 .hus-title::after {
   content: "";
   display: block;
-  width: 420px;
+  width: 380px;
   height: 4px;
   background: #333;
   margin: 10px auto 0;
 }
 
     .hus-card {
-  width: 380px;      /* matchar grid-template */
-  height: 400px;     /* eller vad du vill ha */
+  width: 340px;      /* matchar grid-template */
+  height: 360px;     /* eller vad du vill ha */
   position: relative;
   overflow: hidden;
   filter: brightness(0.6);
@@ -837,12 +837,12 @@
       .hero-content h1,
       .analysis-content h1,
       .om-oss-content h1 {
-        font-size: 3em;
+        font-size: 2em;
       }
       .hero-content p,
       .analysis-content p,
       .om-oss-content p {
-        font-size: 2em;
+        font-size: 1em;
       }
       /* Pilar lite mindre */
       .arrow-btn {
@@ -851,7 +851,7 @@
         height: 60px;
       }
       .analysis-dots {
-        bottom: 50px;
+        bottom: 100px;
       }
       .down-chevron, .down-chevron2, .down-chevron3,
       .up-chevron2, .up-chevron3, .up-chevron4,
@@ -1441,6 +1441,7 @@ showAnalysisSlide2(0);
   </script>
 </body>
 </html>
+
 
 
 
