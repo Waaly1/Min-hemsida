@@ -46,7 +46,7 @@
       padding: 10px 20px;
       border-radius: 5px;
       font-weight: bold;
-      font-size: clamp(1.2rem, 0.5vw, 1.2rem);
+      font-size: clamp(1rem, 0.5vw, 1rem);
       border: 1px solid #ccc;
       transition: background-color 0.3s, color 0.3s, transform 0.2s;
       background: #fff;
@@ -208,9 +208,8 @@
       color: #fff;
       padding: 100px;
       top: 0;
-      margin-top: 10vh;
+      margin-top: 5vh auto 0;
       max-width: 1500px;
-      margin: 0 auto;
     }
     .hero-content h1 {
       font-size: clamp(2rem, 4vw, 2.5rem);
@@ -219,7 +218,7 @@
     }
     .hero-content p {
       font-size: clamp(0.8rem, 2vw, 1.6rem);
-      margin-bottom: 0px;
+      margin-bottom: 10px;
     }
 
     .hero-content > p:first-of-type {
@@ -836,17 +835,28 @@
      ****************************************************/
     /* För mobil => text mindre, projekt i kolumn */
     @media (max-width: 768px) {
-      /* Mindre textstorlek i hero, om-oss, etc. */
+  .hero-content,
+  .analysis-content,
+      {
+    padding: 40px 20px;
+    max-width: 92%;
+  }
       .hero-content h1,
       .analysis-content h1,
       .om-oss-content h1 {
         font-size: 2.5em;
+        max-width: 28ch; /* “ch” = teckenbredd, ger snygg radlängd */
+    margin-left: auto;
+    margin-right: auto;
       }
       .hero-content p,
       .hero-cta-text,
       .analysis-content p,
       .om-oss-content p {
         font-size: 1.2em;
+        max-width: 28ch; /* “ch” = teckenbredd, ger snygg radlängd */
+    margin-left: auto;
+    margin-right: auto;
       }
       /* Pilar lite mindre */
       .arrow-btn {
@@ -855,7 +865,7 @@
         height: 60px;
       }
       .analysis-dots {
-        bottom: 100px;
+        bottom: 50px;
       }
       .down-chevron, .down-chevron2, .down-chevron3,
       .up-chevron2, .up-chevron3, .up-chevron4,
@@ -1104,7 +1114,7 @@ Här får varje familj möjlighet att leva i en miljö som inspirerar till både
       <button id="analysisPrev" class="arrow-btn">&#10094;</button>
       <button id="analysisNext" class="arrow-btn">&#10095;</button>
 
-      <div class="analysis-dots" id="analysisDots"></div>
+      <div class="analysis-dots" id="analysisDots2"></div>
     </div>
 
   </section>
@@ -1445,6 +1455,7 @@ showAnalysisSlide2(0);
   </script>
 </body>
 </html>
+
 
 
 
