@@ -242,7 +242,9 @@
   margin-right: auto;
   text-wrap: balance;
 }
-
+    .hero-cta-text {
+      font-size: clamp(1.1rem, 2vw, 2rem);
+    }
     .down-chevron {
       position: absolute;
       bottom: 0;
@@ -379,7 +381,7 @@
 .projects-title::after {
   content: "";
   display: block;
-  width: 420px;
+  width: 330px;
   height: 4px;
   background: #333;
   margin: 10px auto 0;
@@ -624,12 +626,12 @@
   justify-content: center;  /* centrerar rutnätet när det blir "färre" kort på raden */
   
   /* Konstant kortbredd + max 4 per rad automatiskt */
-  grid-template-columns: repeat(auto-fit, minmax(340px, 340px));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
 }
 
     .hus-title {
   text-align: center;
-  font-size: clamp(3rem, 3vw, 3rem);
+  font-size: clamp(2rem, 2vw, 2rem);
   margin: 80px 0 20px;
   font-weight: "";
   letter-spacing: -0.07em;
@@ -639,15 +641,15 @@
 .hus-title::after {
   content: "";
   display: block;
-  width: 380px;
+  width: 330px;
   height: 4px;
   background: #333;
   margin: 10px auto 0;
 }
 
     .hus-card {
-  width: 340px;      /* matchar grid-template */
-  height: 360px;     /* eller vad du vill ha */
+  width: 320px;      /* matchar grid-template */
+  height: 340px;     /* eller vad du vill ha */
   position: relative;
   overflow: hidden;
   filter: brightness(0.6);
@@ -770,7 +772,7 @@
   flex-direction: column;      /* om du vill att rubrik + formulär staplas */
   align-items: center;         /* centrera horisontellt */
   justify-content: center;  
-  font-size: 1.5em;   /* centrera vertikalt */
+  font-size: 1.2em;   /* centrera vertikalt */
     }
     .contact-container h2 {
   margin: 30px 0 20px; /* i stället för 80px 0 20px */
@@ -838,9 +840,10 @@
       .hero-content h1,
       .analysis-content h1,
       .om-oss-content h1 {
-        font-size: 2em;
+        font-size: 3em;
       }
       .hero-content p,
+      .hero-cta-text,
       .analysis-content p,
       .om-oss-content p {
         font-size: 1.5em;
@@ -969,14 +972,14 @@
       <div style="display: flex; flex-direction: column; gap: 40px; align-items: center;">
 
   <div style="text-align: center;">
-    <p class="hero-cta-text" style="color: #fff; font-size: 1em; margin-bottom: 10px;">
+    <p class="hero-cta-text">
   Är du markägare och vill undersöka möjligheten att sälja delar av din fastighet? Se mer här:
 </p>
     <a href="#kostnadsfri-analys" class="btn btn-animated">Funderar på att sälja?</a>
   </div>
 
   <div style="text-align: center;">
-    <p class="hero-cta-text" style="color: #fff; font-size: 1em; margin-bottom: 10px;">
+    <p class="hero-cta-text">
   Är du nyfiken på våra bostadsprojekt och lediga tomter? Utforska dem här:
 </p>
     <a href="#projects" class="btn btn-animated">Se våra projekt!</a>
@@ -1442,6 +1445,7 @@ showAnalysisSlide2(0);
   </script>
 </body>
 </html>
+
 
 
 
