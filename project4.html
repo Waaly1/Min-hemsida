@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viktigt för responsivitet på mobila enheter -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projekt: Spångarängen - Sentrea</title>
+
+  <!-- Importera Inter-fonten -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /****************************************************
+     * BASSTYLING
+     ****************************************************/
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      font-size: clamp(0.8rem, 0.5vw, 1rem);
+      background-color: #e2e7fd;
+    }
+
+    /****************************************************
+     * HEADER & NAV
+     ****************************************************/
+    header {
+      background: #f8f8f8;
+      border-bottom: 1px solid #ddd;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    /* LOGO */
+    .logo-container a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .logo-container img {
+      height: 60px;
+      margin-right: 10px;
+    }
+
+    /* NAV & MENYLÄNKAR (DESKTOP) */
+    nav {
+      position: relative;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;       /* Synligt i desktop-läge */
+      gap: 20px;
+      transition: all 0.3s ease;
+    }
+    nav ul li a {
+      color: #333;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 8px 4px;
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+    }
+    .project-name {
+      font-weight: bold;
+      color: #333;
+      font-size: 1rem;
+      padding: 8px 4px;
+      display: inline-block;
+    }
+
+    /* NAV-INDICATOR (blå linje under aktiv länk) */
+    .nav-indicator {
+      position: absolute;
+      bottom: 0;
+      height: 3px;
+      background: #3E50A3;
+      transition: left 0.3s, width 0.3s;
+      z-index: 1;
+    }
+
+    /* HAMBURGARMENY */
+    .hamburger {
+      display: none;       /* Dold i desktop-läge */
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #333;
+    }
+
+    /* =========== MOBIL-LÄGE =========== */
+    @media (max-width: 768px) {
+      /* Dölj desktop-länkar & nav-indicator */
+      nav ul {
+        display: none;
+      }
+      .nav-indicator {
+        display: none;
+      }
+      /* Visa hamburgaren istället */
+      .hamburger {
+        display: flex;
+      }
+      /* Menyn när den är "öppen" (klick på hamburgaren) */
+      nav ul.open {
+        display: block;          /* Byt till block eller flex, men låt “max-height” styra höjden */
+        position: fixed;         /* Låt menyn ligga över sidinnehållet */
+        top: 80px;               /* Precis under headern */
+        left: 0;
+        width: 100%;
+        background: #f8f8f8;
+        border-top: 1px solid #ddd;
+        z-index: 9999;
+
+        /* Transition för “rullgardins”-effekt */
+        max-height: 100vh;       /* Full höjd när öppen */
+        overflow-y: auto;        /* Scrolla om menyn blir lång */
+        /* Om du vill ha en animerad “rull ner”:
+           Sätt .open med en CSS-transitionsstart (ex. 0) i default-läget.
+           Se längre ner i koden. */
+      }
+
+      /* Låt varje menyval få en tydlig linje under sig */
+      nav ul.open li {
+        border-bottom: 1px solid #ddd;
+        margin: 0 20px;
+        padding: 10px 0;
+      }
+      nav ul.open li a {
+        font-weight: normal;
+        display: block;
+      }
+    }
+
+    /* 
+      Om du vill ha en mjuk "rullgardin":
+      1) Sätt nav ul { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; } 
+         i mobil-läget (innan .open).
+      2) När .open => max-height: 100vh;
+      Se ex. nedan:
+    */
+    @media (max-width: 768px) {
+      nav ul {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+      nav ul.open {
+        max-height: 100vh;
+      }
+    }
+
+    /****************************************************
+     * MAIN
+     ****************************************************/
+    main {
+      padding: 60px 30px 30px 30px;
+      max-width: 1500px; /* maxbredd för desktop */
+      margin: 0 auto;    /* centrera */
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* BLOCK-LAYOUT */
+    .block {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 20px;
+    }
+    .block img {
+      width: 100%;
+      max-width: 1000px; /* Sätt gärna en maxbredd i desktop */
+      height: auto;
+      border-radius: 5px;
+      box-shadow: 0 16px 32px rgba(0,0,0,0.4);
+    }
+    .block .text {
+      max-width: 700px;
+      line-height: 1.6;
+    }
+    .block .text p {
+      margin-bottom: 1em;
+    }
+    .block .text h2 {
+      display: inline-block;
+      color: #333;
+      border-bottom: 3px solid #3E50A3;
+      padding: 0 0 4px 0;
+      margin-bottom: 0.5em;
+    }
+
+    /* Block2 => vänd ordning i desktop-läge */
+    .block2 .image {
+      order: 2;
+    }
+    .block2 .text {
+      order: 1;
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 2px solid #ddd;
+      margin: 20px 0;
+    }
+
+    /****************************************************
+     * FOOTER
+     ****************************************************/
+    footer {
+      background: #f8f8f8;
+      border-top: 1px solid #ddd;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    /****************************************************
+     * MEDIA QUERIES FÖR INNEHÅLL
+     ****************************************************/
+    /* Smal skärm => block i kolumn */
+    @media (max-width: 768px) {
+      .block {
+        flex-direction: column;
+        align-items: center;
+      }
+      .block2 .image {
+        order: 1;
+      }
+      .block2 .text {
+        order: 2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="images/sentrea-logo.png" alt="Sentrea Logo">
+      </a>
+    </div>
+    <nav>
+      <ul id="nav-links">
+        <li><a href="index.html#hero">Hem</a></li>
+        <li><a href="index.html#projects">Våra Projekt</a></li>
+        <li><a href="index.html#kostnadsfri-analys">Sälja mark?</a></li>
+        <li><a href="index.html#hus">Husmodeller</a></li>
+        <li><a href="index.html#kostnadsfri-analys-2">Köpa mark?</a></li>
+        <li><a href="index.html#contact">Kontakt</a></li>
+        <li class="project-name">Projekt: Spångarängen</li>
+      </ul>
+      <span class="nav-indicator" id="nav-indicator"></span>
+      <!-- Hamburgarmeny -->
+      <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="block">
+      <div class="image">
+        <img src="images/project4-a.jpg" alt="Spångarängen Bild 1">
+      </div>
+      <div class="text">
+        <h2>Koncept och design</h2>
+        <p>
+          Projektet Skuttunge har gått vidare från planeringsfasen och fick förhandsbesked för 5 bostadstomter under 2025. Vi arbetar nu vidare med att utveckla området inför kommande lantmäteri- och projekteringssteg.
+        </p>
+        <p>
+          Området har stor potential tack vare sin lantliga charm och närhet till större tätorter – och målet är att skapa ett attraktivt och funktionellt bostadsområde.
+        </p>
+      </div>
+    </div>
+    <hr class="divider" />
+
+    <div class="block block2">
+      <div class="image">
+        <img src="" alt="">
+      </div>
+      <div class="text">
+        <h2></h2>
+        <p>
+        </p>
+      </div>
+    </div>
+    <hr class="divider" />
+
+    <div class="block">
+      <div class="image">
+        <img src="" alt="">
+      </div>
+      <div class="text">
+        <h2></h2>
+        <p>
+         </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sentrea. Alla rättigheter förbehållna.</p>
+  </footer>
+
+  <script>
+    /****************************************************
+     * NAV-INDICATOR (blå linje under "Projekt: Bredgården")
+     ****************************************************/
+     const navIndicator = document.getElementById('nav-indicator');
+
+// Vid sidladdning => placera linjen under "Projekt: Bredgården"
+window.addEventListener('load', () => {
+  const projectNameLi = document.querySelector('.project-name');
+  if (projectNameLi) {
+    setIndicator(projectNameLi);
+  }
+});
+
+// (Valfritt) Vid fönsterstorleksändring => uppdatera placeringen igen
+window.addEventListener('resize', () => {
+  const projectNameLi = document.querySelector('.project-name');
+  if (projectNameLi) {
+    setIndicator(projectNameLi);
+  }
+});
+
+// Funktion som sätter linjens position + bredd
+function setIndicator(el) {
+  const linkRect = el.getBoundingClientRect();
+  const parentRect = el.offsetParent.getBoundingClientRect();
+  const offsetLeft = linkRect.left - parentRect.left;
+  const width = linkRect.width;
+  navIndicator.style.left = offsetLeft + 'px';
+  navIndicator.style.width = width + 'px';
+}
+
+    /****************************************************
+     * HAMBURGARMENY (Klick + stäng)
+     ****************************************************/
+    const hamburger = document.getElementById('hamburger');
+    const navUl = document.getElementById('nav-links');
+    const allLinks = navUl.querySelectorAll('li a');
+
+    hamburger.addEventListener('click', () => {
+      navUl.classList.toggle('open');
+    });
+
+    // Stäng menyn när man klickar på en länk i mobil-läge
+    allLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768 && navUl.classList.contains('open')) {
+          navUl.classList.remove('open');
+        }
+      });
+    });
+
+    // Stäng menyn om man ändrar fönsterstorlek (går över 768px)
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        navUl.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>
