@@ -25,15 +25,14 @@
       font-family: 'Inter', sans-serif;
     }
     html, body {
-      height: 100%;
-      color: #333;
-      scroll-snap-type: y mandatory;
-      scroll-snap-stop: always;
-      overflow-y: scroll;
-    }
+  height: 100%;
+  color: #333;
+  overflow-y: auto;
+}
     /* Dynamisk textstorlek: min 14px, max 18px */
     body {
       font-size: clamp(0.8rem, 0.5vw, 1rem);
+      background-color: #e2e7fd;
     }
     a {
       text-decoration: none;
@@ -47,6 +46,7 @@
       padding: 10px 20px;
       border-radius: 5px;
       font-weight: bold;
+      font-size: clamp(2rem, 0.5vw, 2rem);
       border: 1px solid #ccc;
       transition: background-color 0.3s, color 0.3s, transform 0.2s;
       background: #fff;
@@ -74,8 +74,8 @@
       position: sticky;
       top: 0;
       height: 10vh;
-      background: #f8f8f8;
-      border-bottom: 1px solid #ddd;
+      background-color: #f4f6fc;
+      border-bottom: 1px solid #333;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       z-index: 999;
       display: flex;
@@ -110,6 +110,7 @@
       padding: 8px 4px;
       position: relative;
       display: inline-block;
+      font-size: clamp(1rem, 0.5vw, 1rem);
     }
 
     /* Blå linje (nav-indicator) för desktop */
@@ -175,14 +176,10 @@
      * 4. SECTIONS
      ****************************************************/
     section {
-      height: 90%;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-      scroll-margin-top: 10vh; /* sticky header */
-    }
+  width: 100%;
+  position: relative;
+  scroll-margin-top: 12vh;
+}
 
     /****************************************************
      * 5. HERO
@@ -193,7 +190,9 @@
       justify-content: center;
       align-items: flex-start;
       position: relative;
+      min-height: 85vh;
     }
+    
     #hero::before {
       content: "";
       position: absolute;
@@ -207,18 +206,42 @@
       z-index: 2;
       text-align: center;
       color: #fff;
-      padding: 20px;
+      padding: 150px;
       top: 20%;
-      max-width: 1000px;
+      max-width: 1500px;
+      margin: 0 auto;
     }
     .hero-content h1 {
       font-size: 4em;
-      margin-bottom: 20px;
+      margin-bottom: 80px;
+      letter-spacing: -0.05em;
     }
     .hero-content p {
-      font-size: 1.2em;
-      margin-bottom: 20px;
+      font-size: 2em;
+      margin-bottom: 0px;
     }
+
+    .hero-content > p:first-of-type {
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}
+
+.hero-content h1 {
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}
+
+.hero-content .hero-cta-text {
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}
+
     .down-chevron {
       position: absolute;
       bottom: 0;
@@ -241,6 +264,7 @@
      ****************************************************/
     #om-oss {
       position: relative;
+      display: none;
     }
     .up-chevron-om {
       position: absolute;
@@ -334,28 +358,54 @@
      * 7. VÅRA PROJEKT
      ****************************************************/
     #projects {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 1fr;
-      width: 100%;
-      height: 90vh;
-      position: relative;
-    }
+  display: grid;
+  gap: 20px; 
+  justify-content: center;  /* centrerar rutnätet när det blir "färre" kort på raden */
+  
+  /* Konstant kortbredd + max 4 per rad automatiskt */
+  grid-template-columns: repeat(auto-fit, minmax(480px, 480px));
+}
+
+    .projects-title {
+  text-align: center;
+  font-size: clamp(4rem, 4vw, 4rem);
+  margin: 80px 0 20px;
+  font-weight: "";
+  letter-spacing: -0.07em;
+  color: #333;
+}
+
+.projects-title::after {
+  content: "";
+  display: block;
+  width: 560px;
+  height: 4px;
+  background: #333;
+  margin: 10px auto 0;
+}
+
     .project-card {
-      position: relative;
-      overflow: hidden;
-      filter: brightness(0.6);
-      transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
-    }
+  width: 480px;      /* matchar grid-template */
+  height: 500px;     /* eller vad du vill ha */
+  position: relative;
+  overflow: hidden;
+  filter: brightness(0.6);
+  transition: box-shadow 0.3s, filter 0.3s;
+  border-radius: 10px;
+}
     .project-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.3s ease;
     }
+.project-card:hover img {
+  transform: scale(1.05);
+}
+
     .project-card:hover {
       filter: brightness(1);
-      transform: scale(1.02);
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     .overlay {
@@ -370,7 +420,7 @@
       max-width: 80%;
     }
     .overlay h3 {
-      font-size: 1.2em;
+      font-size: 1.5em;
       margin: 0;
     }
     .project-card a {
@@ -412,12 +462,27 @@
       transform: translateX(-50%) scale(1.2);
     }
 
+    #projects-section {
+  margin-bottom: 80px; /* ändra värdet tills det känns perfekt */
+}
+
     /****************************************************
      * 8. KOSTNADSFRI ANALYS
      ****************************************************/
     #kostnadsfri-analys {
       position: relative;
+      height: 80vh;      /* <-- VIKTIGT: ger sektionen höjd så den syns */
+  max-width: 100%;
+  margin: 0 auto;
     }
+
+    #kostnadsfri-analys-2 {
+  position: relative;
+  height: 80vh;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
     .up-chevron3 {
       position: absolute;
       top: 0;
@@ -439,6 +504,8 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
+      border-radius: 0px;
+
     }
     .analysis-slide {
       position: absolute;
@@ -475,11 +542,12 @@
       z-index: 2;
     }
     .analysis-content h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
+      font-size: 4em;
+      margin-bottom: 100px;
+      letter-spacing: -0.04em;
     }
     .analysis-content p {
-      font-size: 1.2em;
+      font-size: 3em;
       margin-bottom: 20px;
       max-width: 700px;
       margin-left: auto;
@@ -491,7 +559,7 @@
       transform: translateY(-50%);
       background: none;
       border: none;
-      font-size: 4em;
+      font-size: 5em;
       color: #fff;
       cursor: pointer;
       width: 80px;
@@ -507,6 +575,10 @@
     }
     #analysisNext {
       right: 10px;
+    }
+    #analysisPrev2 { left: 10px; 
+    }
+    #analysisNext2 { right: 10px; 
     }
     .analysis-dots {
       position: absolute;
@@ -545,11 +617,120 @@
       transform: translateX(-50%) scale(1.2);
     }
 
+    #hus {
+  display: grid;
+  gap: 20px; 
+  justify-content: center;  /* centrerar rutnätet när det blir "färre" kort på raden */
+  
+  /* Konstant kortbredd + max 4 per rad automatiskt */
+  grid-template-columns: repeat(auto-fit, minmax(480px, 480px));
+}
+
+    .hus-title {
+  text-align: center;
+  font-size: clamp(4rem, 4vw, 4rem);
+  margin: 80px 0 20px;
+  font-weight: "";
+  letter-spacing: -0.07em;
+  color: #333;
+}
+
+.hus-title::after {
+  content: "";
+  display: block;
+  width: 490px;
+  height: 4px;
+  background: #333;
+  margin: 10px auto 0;
+}
+
+    .hus-card {
+  width: 480px;      /* matchar grid-template */
+  height: 500px;     /* eller vad du vill ha */
+  position: relative;
+  overflow: hidden;
+  filter: brightness(0.6);
+  transition: box-shadow 0.3s, filter 0.3s;
+  border-radius: 10px;
+}
+    .hus-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+.hus-card:hover img {
+  transform: scale(1.05);
+}
+
+    .hus-card:hover {
+      filter: brightness(1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .overlay {
+      position: absolute;
+      bottom: 50px;
+      left: 20px;
+      color: #fff;
+      background: #3E50A3;
+      padding: 8px 12px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      max-width: 80%;
+    }
+    .overlay h3 {
+      font-size: 1.5em;
+      margin: 0;
+    }
+    .project-card a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      color: inherit;
+    }
+    .up-chevron2 {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 50px;
+      fill: #fff;
+      cursor: pointer;
+      z-index: 2;
+      transition: fill 0.3s, transform 0.3s;
+    }
+    .up-chevron2:hover {
+      fill: #ccc;
+      transform: translateX(-50%) scale(1.2);
+    }
+    .down-chevron2 {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 50px;
+      fill: #fff;
+      cursor: pointer;
+      z-index: 2;
+      transition: fill 0.3s, transform 0.3s;
+    }
+    .down-chevron2:hover {
+      fill: #ccc;
+      transform: translateX(-50%) scale(1.2);
+    }
+
+    #hus-section {
+  margin-bottom: 80px; /* ändra värdet tills det känns perfekt */
+}
+
     /****************************************************
      * 9. KONTAKT
      ****************************************************/
     #contact {
-        background: #fff;
+        background: #e2e7fd;
     width: 100%;
     position: relative;
     height: 90vh;
@@ -587,7 +768,8 @@
   display: flex;               /* gör .contact-container till flex-låda */
   flex-direction: column;      /* om du vill att rubrik + formulär staplas */
   align-items: center;         /* centrera horisontellt */
-  justify-content: center;     /* centrera vertikalt */
+  justify-content: center;  
+  font-size: 2em;   /* centrera vertikalt */
     }
     .contact-container h2 {
   margin: 30px 0 20px; /* i stället för 80px 0 20px */
@@ -627,6 +809,7 @@
       padding: 10px 20px;
       border-radius: 5px;
       font-weight: bold;
+      font-size: 1em;
       cursor: pointer;
       transition: transform 0.2s, background 0.3s;
     }
@@ -639,7 +822,7 @@
      * 10. FOOTER
      ****************************************************/
     footer {
-      background: #f8f8f8;
+      background: #e2e7fd;
       border-top: 1px solid #ddd;
       text-align: center;
       padding: 10px;
@@ -654,12 +837,12 @@
       .hero-content h1,
       .analysis-content h1,
       .om-oss-content h1 {
-        font-size: 2em;
+        font-size: 3em;
       }
       .hero-content p,
       .analysis-content p,
       .om-oss-content p {
-        font-size: 1em;
+        font-size: 2em;
       }
       /* Pilar lite mindre */
       .arrow-btn {
@@ -677,14 +860,6 @@
         height: 40px;
       }
       /* Projekt => kolumn i stället för grid */
-      #projects {
-        display: flex;
-        flex-direction: column;
-        height: auto; /* auto-höjd */
-      }
-      .project-card {
-        height: auto; /* låt bilden anpassa höjd */
-      } 
     }
     
 @media (max-width: 1000px) {
@@ -733,12 +908,23 @@
 @media (max-width: 768px) {
   .footer-info {
     font-size: 0.7rem;
+    letter-spacing: -0.04em;
   }
 }
 
-@media (max-width: 768px) {
-  .project-card {
-    filter: brightness(1) !important;
+@media (min-width: 1400px) {
+  .hero-content h1 {
+    font-size: 5.5rem;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+}
+
+@media (min-width: 1400px) {
+  .analysis-content h1 {
+    font-size: 5.5rem;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
   }
 }
 
@@ -755,9 +941,10 @@
     <nav>
       <ul id="nav-links">
         <li><a href="#hero">Hem</a></li>
-        <li><a href="#om-oss">Om oss</a></li>
-        <li><a href="#projects">Våra projekt</a></li>
-        <li><a href="#kostnadsfri-analys">För markägare!</a></li>
+        <li><a href="#projects-section">Våra projekt</a></li>
+        <li><a href="#kostnadsfri-analys">Sälja mark?</a></li>
+        <li><a href="#hus-section">Husmodeller</a></li>
+        <li><a href="#kostnadsfri-analys-2">Köpa mark?</a></li>
         <li><a href="#contact">Kontakt</a></li>
       </ul>
       <!-- Blå linje (desktop) -->
@@ -774,44 +961,32 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-content">
-      <h1>Vi förvandlar mark till möjligheter</h1>
-      <p>Sentera-koncernen har en gedigen bakgrund inom både fastighets- och byggbranschen. 
-        Genom att ansvara för hela kedjan i bostadsbyggandet – från förvärv av råmark till försäljning av inflyttningsklara hem – kan vi erbjuda prisvärda och högkvalitativa bostäder. 
-        Våra områden är förlagda strax utanför stadens puls, med goda kommunikationer som gör pendlingen enkel.</p>
-      <div style="display: flex; flex-direction: column; gap: 30px; align-items: center;">
+      <p>Husleverans & entreprenad - Välkommen till Sentrea</p>
+      <h1 class="hero-title">
+  Vi tar hand om helheten – från första skiss till färdigt hem.
+</h1>
+      <div style="display: flex; flex-direction: column; gap: 40px; align-items: center;">
 
   <div style="text-align: center;">
-    <p style="color: #fff; font-size: 1.2em; margin-bottom: 10px;">
-      Är du markägare och vill undersöka möjligheten att sälja delar av din fastighet? Se mer här:
-    </p>
-    <a href="#kostnadsfri-analys" class="btn btn-animated">För markägare!</a>
+    <p class="hero-cta-text" style="color: #fff; font-size: 2em; margin-bottom: 10px;">
+  Är du markägare och vill undersöka möjligheten att sälja delar av din fastighet? Se mer här:
+</p>
+    <a href="#kostnadsfri-analys" class="btn btn-animated">Funderar på att sälja?</a>
   </div>
 
   <div style="text-align: center;">
-    <p style="color: #fff; font-size: 1.2em; margin-bottom: 10px;">
-      Är du nyfiken på våra bostadsprojekt och lediga tomter? Utforska dem här:
-    </p>
+    <p class="hero-cta-text" style="color: #fff; font-size: 2em; margin-bottom: 10px;">
+  Är du nyfiken på våra bostadsprojekt och lediga tomter? Utforska dem här:
+</p>
     <a href="#projects" class="btn btn-animated">Se våra projekt!</a>
   </div>
 
 </div>
     </div>
-    <svg class="down-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-         onclick="document.getElementById('om-oss').scrollIntoView({behavior:'smooth'})">
-      <path d="M6 9l6 6 6-6" />
-    </svg>
   </section>
 
   <!-- OM OSS -->
   <section id="om-oss">
-    <svg class="up-chevron-om" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-         onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">
-      <path d="M6 15l6-6 6 6" />
-    </svg>
-    <svg class="down-chevron-om" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-         onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-      <path d="M6 9l6 6 6-6" />
-    </svg>
 
     <div class="om-oss-slides-container" id="omOssSlides">
       <!-- Slide 1 => "Om Oss" (höger) -->
@@ -849,11 +1024,10 @@ Här får varje familj möjlighet att leva i en miljö som inspirerar till både
   </section>
 
   <!-- VÅRA PROJEKT -->
-  <section id="projects">
-    <svg class="up-chevron2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-         onclick="document.getElementById('om-oss').scrollIntoView({behavior:'smooth'})">
-      <path d="M6 15l6-6 6 6" />
-    </svg>
+  <section id="projects-section">
+  <h2 class="projects-title">Våra bostadsprojekt</h2>
+
+  <div id="projects">
 
     <div class="project-card">
       <a href="project1.html">
@@ -863,6 +1037,7 @@ Här får varje familj möjlighet att leva i en miljö som inspirerar till både
         </div>
       </a>
     </div>
+
     <div class="project-card">
       <a href="project2.html">
         <img src="images/project2-bg.jpg" alt="Råsta, Uppsala kommun">
@@ -871,6 +1046,7 @@ Här får varje familj möjlighet att leva i en miljö som inspirerar till både
         </div>
       </a>
     </div>
+
     <div class="project-card">
       <a href="project3.html">
         <img src="images/project3-bg.jpg" alt="Skuttunge, Uppsala kommun">
@@ -880,23 +1056,25 @@ Här får varje familj möjlighet att leva i en miljö som inspirerar till både
       </a>
     </div>
 
-    <svg class="down-chevron2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-         onclick="document.getElementById('kostnadsfri-analys').scrollIntoView({behavior:'smooth'})">
-      <path d="M6 9l6 6 6-6" />
-    </svg>
-  </section>
+    <div class="project-card">
+      <a href="project4.html">
+        <img src="images/project4-bg.jpg" alt="Spångarängen, Uppsala kommun">
+        <div class="overlay">
+          <h3>Spångarängen, Uppsala kommun</h3>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
 
   <!-- KOSTNADSFRI ANALYS -->
   <section id="kostnadsfri-analys">
-    <svg class="up-chevron3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-         onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-      <path d="M6 15l6-6 6 6" />
-    </svg>
 
     <div class="analysis-slides-container" id="analysisSlides">
       <div class="analysis-slide active" style="background-image: url('images/analysis1.jpg');">
         <div class="analysis-content">
-          <h1>För markägare!</h1>
+          <h1>Funderar på att sälja?</h1>
           <h2>Steg 1</h2>
           <p>Vi gör en kostnadsfri initial bedömning av din fastighet.</p>
           <a href="#contact" class="btn btn-animated">Kontakta oss</a>
@@ -904,7 +1082,7 @@ Här får varje familj möjlighet att leva i en miljö som inspirerar till både
       </div>
       <div class="analysis-slide" style="background-image: url('images/analysis2.jpg');">
         <div class="analysis-content">
-          <h1>För markägare!</h1>
+          <h1>Funderar på att sälja?</h1>
           <h2>Steg 2</h2>
           <p>Vi presenterar möjliga utvecklingsplaner och potentiella vinster.</p>
           <a href="#contact" class="btn btn-animated">Kontakta oss</a>
@@ -912,7 +1090,7 @@ Här får varje familj möjlighet att leva i en miljö som inspirerar till både
       </div>
       <div class="analysis-slide" style="background-image: url('images/analysis3.jpg');">
         <div class="analysis-content">
-          <h1>För markägare!</h1>
+          <h1>Funderar på att sälja?</h1>
           <h2>Steg 3</h2>
           <p>Vi hjälper dig hela vägen från idé till genomförande.</p>
           <a href="#contact" class="btn btn-animated">Kontakta oss</a>
@@ -925,18 +1103,75 @@ Här får varje familj möjlighet att leva i en miljö som inspirerar till både
       <div class="analysis-dots" id="analysisDots"></div>
     </div>
 
-    <svg class="down-chevron3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-         onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-      <path d="M6 9l6 6 6-6" />
-    </svg>
   </section>
+
+  <!-- Våra husmodeller -->
+
+  <section id="hus-section">
+  <h2 class="hus-title">Våra husmodeller</h2>
+
+  <div id="hus">
+
+    <div class="hus-card">
+      <a href="solhem.html">
+        <img src="images/solhem-bg.jpeg" alt="Solhem, 133">
+        <div class="overlay">
+          <h3>Solhem, 133</h3>
+        </div>
+      </a>
+    </div>
+
+    <div class="hus-card">
+      <a href="">
+        <img src="" alt="">
+        <div class="overlay">
+          <h3>Kommer snart...</h3>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<section id="kostnadsfri-analys-2">
+  <div class="analysis-slides-container" id="analysisSlides2">
+
+    <div class="analysis-slide active" style="background-image: url('images/analysis4.jpg');">
+      <div class="analysis-content">
+        <h1>Vill du köpa mark?</h1>
+        <h2>Steg 1</h2>
+        <p>Berätta vad du söker – vi tar fram förslag på mark som matchar dina mål och din budget.</p>
+        <a href="#contact" class="btn btn-animated">Kontakta oss</a>
+      </div>
+    </div>
+
+    <div class="analysis-slide" style="background-image: url('images/analysis5.jpg');">
+      <div class="analysis-content">
+        <h1>Vill du köpa mark?</h1>
+        <h2>Steg 2</h2>
+        <p>Vi går igenom alternativen tillsammans och reder ut vad som faktiskt är möjligt – läge, potential och nästa steg.</p>
+        <a href="#contact" class="btn btn-animated">Kontakta oss</a>
+      </div>
+    </div>
+
+    <div class="analysis-slide" style="background-image: url('images/analysis6.jpg');">
+      <div class="analysis-content">
+        <h1>Vill du köpa mark?</h1>
+        <h2>Steg 3</h2>
+        <p>När rätt mark känns rätt hjälper vi dig hela vägen fram till affär, med trygg guidning genom processen.</p>
+        <a href="#contact" class="btn btn-animated">Kontakta oss</a>
+      </div>
+    </div>
+
+    <button id="analysisPrev2" class="arrow-btn">&#10094;</button>
+    <button id="analysisNext2" class="arrow-btn">&#10095;</button>
+
+    <div class="analysis-dots" id="analysisDots2"></div>
+  </div>
+</section>
 
   <!-- KONTAKT -->
   <section id="contact">
-    <svg class="up-chevron4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-         onclick="document.getElementById('kostnadsfri-analys').scrollIntoView({behavior:'smooth'})">
-      <path d="M6 15l6-6 6 6" />
-    </svg>
 
     <div class="contact-container">
       <h2>Kontakt</h2>
@@ -1122,6 +1357,52 @@ Här får varje familj möjlighet att leva i en miljö som inspirerar till både
     createAnalysisDots();
     showAnalysisSlide(currentAnalysisSlide);
 
+    const analysisSlidesContainer2 = document.getElementById('analysisSlides2');
+const analysisSlides2 = analysisSlidesContainer2.querySelectorAll('.analysis-slide');
+const analysisPrev2 = document.getElementById('analysisPrev2');
+const analysisNext2 = document.getElementById('analysisNext2');
+const analysisDotsContainer2 = document.getElementById('analysisDots2');
+let currentAnalysisSlide2 = 0;
+
+function createAnalysisDots2() {
+  analysisSlides2.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.classList.add('analysis-dot');
+    dot.addEventListener('click', () => {
+      showAnalysisSlide2(i);
+    });
+    analysisDotsContainer2.appendChild(dot);
+  });
+}
+
+function showAnalysisSlide2(index) {
+  if (index < 0) index = analysisSlides2.length - 1;
+  if (index >= analysisSlides2.length) index = 0;
+  currentAnalysisSlide2 = index;
+
+  analysisSlides2.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (i === currentAnalysisSlide2) slide.classList.add('active');
+  });
+
+  const allDots2 = analysisDotsContainer2.querySelectorAll('.analysis-dot');
+  allDots2.forEach((dot, i) => {
+    dot.classList.remove('active');
+    if (i === currentAnalysisSlide2) dot.classList.add('active');
+  });
+}
+
+analysisNext2.addEventListener('click', () => {
+  showAnalysisSlide2(currentAnalysisSlide2 + 1);
+});
+
+analysisPrev2.addEventListener('click', () => {
+  showAnalysisSlide2(currentAnalysisSlide2 - 1);
+});
+
+createAnalysisDots2();
+showAnalysisSlide2(0);
+
     /***************************************************
      * OM-OSS - SLIDES
      ***************************************************/
@@ -1160,12 +1441,3 @@ Här får varje familj möjlighet att leva i en miljö som inspirerar till både
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
