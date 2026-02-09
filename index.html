@@ -190,7 +190,7 @@
       justify-content: center;
       align-items: flex-start;
       position: relative;
-      min-height: 85vh;
+      height: 85vh;
     }
     
     #hero::before {
@@ -213,7 +213,7 @@
     }
     .hero-content h1 {
       font-size: 3em;
-      margin-bottom: 80px;
+      margin-bottom: 20px;
       letter-spacing: -0.05em;
     }
     .hero-content p {
@@ -363,12 +363,12 @@
   justify-content: center;  /* centrerar rutnätet när det blir "färre" kort på raden */
   
   /* Konstant kortbredd + max 4 per rad automatiskt */
-  grid-template-columns: repeat(auto-fit, minmax(380px, 380px));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
 }
 
     .projects-title {
   text-align: center;
-  font-size: clamp(3rem, 3vw, 3rem);
+  font-size: clamp(2rem, 2vw, 2rem);
   margin: 80px 0 20px;
   font-weight: "";
   letter-spacing: -0.07em;
@@ -385,8 +385,8 @@
 }
 
     .project-card {
-  width: 380px;      /* matchar grid-template */
-  height: 400px;     /* eller vad du vill ha */
+  width: 320px;      /* matchar grid-template */
+  height: 340px;     /* eller vad du vill ha */
   position: relative;
   overflow: hidden;
   filter: brightness(0.6);
@@ -582,7 +582,7 @@
     }
     .analysis-dots {
       position: absolute;
-      bottom: 10px;
+      bottom: 40px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 3;
@@ -837,12 +837,12 @@
       .hero-content h1,
       .analysis-content h1,
       .om-oss-content h1 {
-        font-size: 2em;
+        font-size: 1em;
       }
       .hero-content p,
       .analysis-content p,
       .om-oss-content p {
-        font-size: 1em;
+        font-size: 0.5em;
       }
       /* Pilar lite mindre */
       .arrow-btn {
@@ -1441,3 +1441,4 @@ showAnalysisSlide2(0);
   </script>
 </body>
 </html>
+
