@@ -24,6 +24,32 @@
       background-color: #e2e7fd;
     }
 
+    a { text-decoration: none; }
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:8px;
+  font-weight:700;
+  border:1px solid #ccc;
+  transition: transform .2s, background-color .3s;
+}
+.btn:hover{ transform: scale(1.03); }
+
+.btn-animated{
+  background:#3E50A3;
+  color:#fff;
+  border:none;
+}
+.btn-animated:hover{ background:#2c3980; }
+
+.map-btn{
+  margin: 10px 0 20px 0;
+}
+
     /****************************************************
      * HEADER & NAV
      ****************************************************/
@@ -263,6 +289,11 @@
       </div>
       <div class="text">
         <h2>Introduktion</h2>
+        <a href="https://www.google.com/maps?q=60.044496, 17.698016"
+   target="_blank"
+   class="btn btn-animated map-btn">
+   📍 Se på karta
+</a>
         <p>
           Projektet Råsta påbörjades under 2025 och befinner sig nu i ett senare skede där förhandsbesked för byggnation av 3 bostadshus beviljades i maj 2025. Vi har därefter påbörjat en lantmäteriprocess för att stycka av tomterna.
         </p>
@@ -366,4 +397,5 @@ function setIndicator(el) {
   </script>
 </body>
 </html>
+
 
